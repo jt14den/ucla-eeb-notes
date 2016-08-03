@@ -1,0 +1,181 @@
+﻿https://github.com/mqwilber/2016-04-14-ucsb/tree/gh-pages/shell_lessons
+
+
+# Answers to 'Files and Directories' exercises
+
+Exercise 1
+---
+Answer: 5, 7, 8, 9
+
+Exercise 2
+---
+Answer: 4
+
+Exercise 3
+---
+Answer: 4
+
+Exercise 4
+---
+Answer: Try `man ls` to get help about `ls`. You read about what `-s` and `-h` do.
+
+
+
+
+# Answers to 'Creating Things' Exercises
+
+Exercise 1: Renaming files
+---
+Answer: 2
+
+Exercise 2: Moving and Copying
+---
+Answer: 2
+
+Exercise 3: Organizing Directories and Files
+---
+To get the necessary output she could run `mv *.dat analyzed`
+
+Exercise 4: Copy with Multiple Filenames
+---
+In the first box, `cp` will copy both files in `thesis` to `backup`
+
+In the second box `cp` throws an error because it doesn't know where to put the `*.txt` files
+
+Exercise 5: Listing Recursively and By Time
+---
+`ls -R -t` will list directories by time and recursively
+
+
+
+
+# Answers to 'Pipes and Filters' Exercises
+
+Exercise 1: What does `sort -n` do?
+---
+
+`sort` with out `-n` will assume that what you are sorting are characters. 
+When sorting characters, "10" comes before "2" because "1" come before "2". In
+other words, you can think of sort as sorting on the first character and then
+on the second character, etc. So "300000" would come before "8" because "3"
+comes before "8".  With the `-n` flag, sort considers 10 a number rather than
+a character string and sorts the numbers as you'd expect.
+
+Exercise 2: What does `<` mean?
+---
+They both take in `mydata.dat` as input, but one command take it as an argument and the other takes it as standard input.
+
+Exercise 3: What does >> mean?
+---
+`echo hello > testfile01.txt` will always overwrite `testfile01.txt` while 
+`echo hello >> testfile02.txt` will create the file if it doesn't exist and
+append to the file otherwise.
+
+
+Exercise 4: Piping commands together
+---
+`wc -l * | sort -n | head -n 3`, this is option 4
+
+Exercise 5: Why does `uniq` only remove adjacent duplicates?
+---
+Removing adjacent duplicates is completely in-line with the Unix philosophy:
+build small programs that do things really well and combine them to do bigger
+things. Combining `uniq` and `sort` will return only the unique fish in the
+list.
+
+Exercise 6: Pipe reading comprehension
+---
+Copy and paste the `animals.txt` data into `nano` and save it as `animals.txt` so you can try it out yourself. 
+
+1. `cat animals.txt`: Prints the `animals.txt` contents to `heads` std in
+2. `head -n 5`: Gets the first 5 animals
+3. `tail -n 3`: Gets the last 3 animals of the first 5
+4. `sort -r`: Reverse sorts the last 3 animals of the first 5
+5. `> final.txt`: Outputs the results to the file `final.txt`
+
+It should contain
+
+```
+2012-11-06,rabbit
+2012-11-06,deer
+2012-11-05,raccoon
+```
+
+Exercise 7: Pipe construction
+---
+`cut -d , -f 2 animals.txt | sort  | uniq`
+
+##below answer not in set
+Exercise 4: Using wildcards
+---
+Answer: 3
+
+
+# Answers to 'Loops' Exercises
+
+Exercise 1: Variables in Loops
+---
+You can try this out using the following commands
+
+```
+touch fructose.dat glucose.dat sucrose.dat
+for datafile in *.dat; do ls *.dat; done
+```
+
+it prints
+
+```
+fructose.dat    glucose.dat sucrose.dat
+fructose.dat    glucose.dat sucrose.dat
+fructose.dat    glucose.dat sucrose.dat
+```
+
+because each time `ls *.dat* displays all the files with a `.dat` extension.
+
+```
+for datafile in *.dat; do ls $datafile; done
+```
+
+prints
+
+```
+fructose.dat
+glucose.dat
+sucrose.dat
+```
+
+because each iteration of the loop prints one item in `*.dat` which expands to the three `.dat` files.
+
+Exercise 2: Saving a file in a loop - Part One
+---
+
+Answer: 1. (Try it out to confirm) 
+
+
+Exercise 3: Saving a file in a loop - Part Two
+---
+Answer: 1. (Try it out to confirm)
+
+
+Exercise 5: Doing a dry run
+---
+Version 1 would echo analyze $file and save the result to the file analyzed-$file.  We would not see anything on the screen
+
+Version 2 is the one we want and it would print the expanded string "analyze $file > analyzed-$file" to the console for each iteration of the for loop.
+
+
+Exercise 5: Nested loops
+---
+Let's try it out and see
+
+```
+for sugar in fructose glucose sucrose
+do
+   for temperature in 25 30 37 40
+   do
+       mkdir $sugar-$temperature
+   done
+done
+```
+
+First, a sugar is extracts from [fructose, glucose, sugar]. For this sugar four directories are made that have the pattern $sugar-$temperature where $temperature is on of the 4 temps given.  This is repeated for each sugar so that 12 new directories are made.
