@@ -233,17 +233,15 @@ mkdir thesis
 
 * `mkdir` MAKES directories 
 
-```bash
-#good names for directories: 
-# is the comment in shell
-# don't use whitespaces - whitespaces used to break arguments on CLI, avoid, use - or _
-# don't begin with - 
-# commands treat names starting with - as options
-# stay with lettters, numbers , ., - and _
-# if you need to refer to names of files or directoirreis tha thave whitespaces 
-```
+**good names for directories:** 
+* is the comment in shell
+* don't use whitespaces - whitespaces used to break arguments on CLI, avoid, use - or _
+* don't begin with - 
+* commands treat names starting with - as options
+* stay with lettters, numbers , ., - and _
+* if you need to refer to names of files or directoirreis tha thave whitespaces 
 
-```
+```bash
 ls -F
 ```
 
@@ -264,7 +262,7 @@ nano draft.txt
 
 * I don't like this draft, let's remove it: 
 
-```
+```bash
 ls
 rm draft.txt
 ls
@@ -274,7 +272,8 @@ ls
 * Deleting is forever! 
 * recreate file then move up one directory
 
-```nano draft.txt
+```bash
+nano draft.txt
 cd ..
 ```
 
@@ -288,18 +287,18 @@ cd ..
 
 * Let's recreate thesis and draft. 
 
-```
+```bash
 mkdir thesis
 ```
 
-```
+```bash
 nano thesis/draft.txt
 ls thesis 
 ```
 
 * but `draft.txt` isn't very informative, let's rename it using the `mv` command
 
-```
+```bash
 mv thesis/draft.txt thesis/quotes.txt 
 ls thesis
 ```
@@ -307,33 +306,33 @@ ls thesis
 * **note**: `mv` works on directories as well
 * let's move quotes into the current directory: remember the `.` 
 
-```
+```bash
 mv thesis/quotes.txt .
 ```
 
-```
+```bash
 ls thesis
 ```
 
 * ls <filename> will only list that file, let's see that our file is there
 
-```
+```bash
 ls quotes.txt
 ```
 
 * if we want to keep the old version, we can use copy
 
-```
+```bash
 cp quotes.txt thesis/quotations.txt
 ```
 
-```
+```bash
 ls quotes.txt thesis/quotations.txt
 ```
 
 * let's removed the copied version
 
-```
+```bash
 rm quotes.txt
 ls quotes.txt thesis/quotations.txt
 ```
@@ -353,18 +352,18 @@ ls quotes.txt thesis/quotations.txt
 * now we can move around and create things, let's see how we can combine existing programs in new ways
 * Let's got into the molecules directory
 
-```
+```bash
 ls molecules
 ```
 
-```
+```bash
 cd molecules
 ```
 
 * the *.pdb format indicates these are Protein Data Bank files
 * let's use the `wc` command -- stands for word count, but also counts lines and characters
 
-```
+```bash
 wc *.pdb
 ```
 
@@ -374,7 +373,7 @@ wc *.pdb
 
 **wc and flags**
 
-```
+```bash
 wc -l *.pdb
 ```
 
@@ -382,14 +381,14 @@ wc -l *.pdb
 
 * what if we do this? 
 
-```
+```bash
 wc -l *.pdb > lengths.txt
 ```
 
 * this will send output (redirect it) to new file named lengths.txt
 * but let's confirm that it worked by using a new command `cat` - let's us look inside the file, stands for concatenate
 
-```
+```bash
 ls lengths.txt
 cat lengths.txt
 ```
@@ -402,7 +401,7 @@ cat lengths.txt
 * now let's use the `sort` command to sort the contents of our file
   - we will use the `-n` flag to tell sort to sort by numerical rather than alpha
 
-```
+```bash
 sort -n lengths.txt
 ```
 
@@ -411,27 +410,27 @@ sort -n lengths.txt
 
 * if we want to do that use; 
 
-```
+```bash
 sort -n lengths.txt > sorted-lengths.txt
 ```
 
 * arrow up to recall last command
 * let's use head to see the biggest:
 
-```
+```bash
 head -1 sorted-lengths.txt
 ```
 
 * final result: which one file is shortest?
 
-```
+```bash
 sort -n lengths.txt | head -l
 ```
 
 * **vertical bar** is a pipe, which sends output of command on left as input to command on right
   * `head` prints specified number of lines from top of file
 
-```
+```bash
 wc -l *.pdb | sort -n | head -1
 ```
 
@@ -460,7 +459,7 @@ programming model: pipes and filters
 * go to creatures directory `data-shell/creatures`
 * may try: 
 
-```
+```bash
 cp *.dat original-*.dat
 ```
 
@@ -475,7 +474,7 @@ cp basilisk.dat unicorn.dat original-*.dat
 * you can perform these operations using a loop
 * example looking at first three lines in each file
 
-```
+```bash
 for filename in basilisk.dat unicorn.dat
   do 
     head -3 $filename
@@ -489,7 +488,7 @@ for filename in basilisk.dat unicorn.dat
   * why might it be problematic to have filenames with spaces?
 * you can include multiple commands in a loop:
 
-```
+```bash
 for filename in *.dat
 do
 echo $filename
@@ -503,7 +502,7 @@ done
 
 * going back to the original file copying problem, we can solve: 
 
-```
+```bash
 for filename in *.dat
 do
   cp $filename original-$filename
@@ -512,7 +511,7 @@ done
 
 * nelle's example:
 
-```
+```bash
 cd north-pacific-gyre/2012-07-03
 ```
 
@@ -539,7 +538,8 @@ cd north-pacific-gyre/2012-07-03
 * edit `middle.sh` with `head “$2” “$1” | tail “$3”`
 * `bash middle.sh pentane.pdb -20 -5`
 * to remember what you've done, and allow for other people to use: add comments to top of file
-```
+
+```bash
 #select lines from middle of a file
 #usage: middle.sh filename -end_line -num_lines
 ```
@@ -554,7 +554,8 @@ cd north-pacific-gyre/2012-07-03
 * nelle problem
   * run goostats on all data files
   * `do-stats.sh`:
-```
+ 
+```bash
 #calculate reduced stats for data files at J = 100 C/bp
   for datafile in “$@”
     do 
