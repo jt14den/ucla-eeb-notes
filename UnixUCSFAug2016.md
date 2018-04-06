@@ -1,27 +1,27 @@
-##Software Carpentry Unix Instructor Crib Sheet
-####UCSF, Aug. 2016
-####Tim Dennis
+## Software Carpentry Unix Instructor Crib Sheet
+#### UCSF, Aug. 2016
+#### Tim Dennis
 
-####Before class:
+#### Before class:
 * set up shell:
-  * enlarge text size
+  * `exec bash` - switches to bash from zsh
+  * enlarge text size - via preferences
   * `export PS1='$ '`
   * `export PROMPT_COMMAND="history 1 >> ~/Dropbox/UnixHistory.txt"`
-  * Turn off the text coloring in terminal (Terminal -> Preferences -> ANSI)
-* students check software installation: Unix, git (with XCode) and Python for Day 1
+  * Turn off the text coloring in terminal (`Terminal -> Preferences -> ANSI`)
+* students check software installation: Unix, git (with XCode)
 
-**Intro to Software Carpentry:** http://swcarpentry.github.io/slideshows/introducing-software-carpentry/index.html#slide-0 
+**Intro to Software Carpentry:** http://swcarpentry.github.io/slideshows/introducing-software-carpentry/index.html#slide-0
 
-####Checklist for class:
+#### Checklist for class:
 * class website: https://jt14den.github.io/2016-08-04-UCSF-R/
-* slack invites: https://2016-08-04-ucsf-r.slack.com/messages/general/
 * Tim's history: https://www.dropbox.com/s/femrf7if1swjno6/UnixHistory.txt?dl=0
 * review of pre-class survey
-  * mixed audience, both novice/experienced and discplines
-  * if material is review for you, help by keeping notes on etherpad and helping your neighbor 
+  * mixed audience, both novice/experienced and disciplines
+  * if material is review for you, help by keeping notes on etherpad and helping your neighbor
   * scientific computing has a long history of being self taught, so most instructors even learn something new
 
-####SETUP
+#### SETUP
 
 * most tasks in the shell can be done with mouse on Desktop. Why do anything differently?
 * motivation
@@ -32,8 +32,8 @@
 * terms: file, directory/folder
 * get data
   * http://swcarpentry.github.io/shell-novice/shell-novice-data.zip, move to Desktop, double click to unzip (if not already done)
-  
-####INTRODUCING THE SHELL
+
+#### INTRODUCING THE SHELL
 **Objectives:** orient to shell and how it relates to the computer, understand the benefit of CLI
 
 * what computers do:
@@ -47,8 +47,8 @@
 * how it works -- the Read Evaluate Print Loop (REPL):
   * you type something - LOOP
   * computer reads it -  READ
-  * executes command - EVAL 
-  * prints output - PRINT 
+  * executes command - EVAL
+  * prints output - PRINT
   * use **command shell** to make this happen: this is the interface between user and computer
 * bash: Bourne again shell, most commonly used, default on most modern implementations
 * example data:
@@ -60,7 +60,7 @@
     3. calculate statistics for each protein separately using program `goostat`
     4. compare statistics for proteins using program called `goodiff`
     5. write up results and submit by end of month
-  * if she enters all commands by hand, will need to do **45,150 times**. 
+  * if she enters all commands by hand, will need to do **45,150 times**.
   * What can she do instead?
 
 * Key terms in Etherpad/Whiteboard
@@ -73,7 +73,8 @@
 * _REPL_ Read-Evaluate-Print-Loop
 
 
-####FILES AND DIRECTORIES
+#### FILES AND DIRECTORIES
+
 **Objectives:** paths, learn basic commands for working with files and directories, learn syntax of commands, tab-completion
 
 * prompt: `$` indicates computer is ready to accept commands
@@ -82,7 +83,7 @@
 whoami
 ```
 
-This command: 
+This command:
 1. finds program
 2. runs program
 3. displays program's output
@@ -102,31 +103,31 @@ pwd
 * `ls` listing, prints names of files and directories in current directory and prints in alphabetical order
 
 ```bash
-ls 
+ls
 ```
 
 * make the output more comprehensible bny using the **flag**`-F`
 
 ```bash
-ls -F 
+ls -F
 ```
 
 * adds trailing / to names of directories
   * spaces and capitalization in commands are important!
   * `-F` is an **option, argument, or flag**
-* `ls` has lots of other options. Let's find out what they are by: 
+* `ls` has lots of other options. Let's find out what they are by:
 
-```bash 
-ls --help 
+```bash
+ls --help
 ```
 
-* many bash commands and programs support a `--help` flag to display more information 
+* many bash commands and programs support a `--help` flag to display more information
 * for more information on how to usr `ls` type `man ls` (caveat WINDOWS users)
   - `man` is for manual and prints the description of a command and options
   - Git for Windows doesn't come with the `man` files, instead do a web search for `unix man page COMMAND`
   - to navigate `man` files use the up and down arrows, or space bar and b for paging, to quit `q`
 
-* We can also `ls` to see contents of another directory: 
+* We can also `ls` to see contents of another directory:
 
 ```bash
 ls -F Desktop
@@ -134,7 +135,7 @@ ls -F Desktop
 
 * we `ls -F` (??) to the Desktop from out home dir and we see a 'data-shell/' folder
 * using a bash shell is strongly dependent on the idea that your files are organized in an hierarchical file system
-* why? use 
+* why? use
 * let's look inside `data-shell`
 
 ```bash
@@ -145,8 +146,8 @@ ls -F Desktop/data-shell
 
 ```bash
 cd Desktop/data-shell
-``` 
-* see where we are: 
+```
+* see where we are:
 ```bash
 pwd
 ```
@@ -155,7 +156,7 @@ pwd
 ls -F
 ```
 
-* we can go down the directory structure, how do we go up? 
+* we can go down the directory structure, how do we go up?
 
 ```bash
 cd data-shell
@@ -166,7 +167,7 @@ cd data-shell
 ```bash
 cd ..
 ```  
-* goes up one level in file hierarchy 
+* goes up one level in file hierarchy
   * `..` is special directory name meaning "the dir containing this one" (parent)
   * can also use absolute paths
 
@@ -184,7 +185,7 @@ cd
 
 * by itself will return you to your `home` directory
 * `pwd`
-* how do we get back to data 
+* how do we get back to data
 
 ```bash
 cd Desktop/data-shell/data
@@ -205,7 +206,7 @@ pwd
 
 * two more short cuts: `~` and `-`
 
-* file organization: 
+* file organization:
   * `ls north-pacific-gyre/2012-07-03/`
   * tab completion
 * challenges: open http://swcarpentry.github.io/shell-novice/02-filedir/#absolute-vs-relative-paths
@@ -218,7 +219,7 @@ pwd
 ####CREATING THINGS
 **Objectives:** create directory hierarchy that matches given diagram, create files, look in folders, delete folders
 
-* go back to the `data-shell` directory (how?) - glad you asked! 
+* go back to the `data-shell` directory (how?) - glad you asked!
 
 ```bash
 pwd
@@ -231,15 +232,15 @@ ls -F
 mkdir thesis
 ```
 
-* `mkdir` MAKES directories 
+* `mkdir` MAKES directories
 
-**good names for directories:** 
+**good names for directories:**
 * is the comment in shell
 * don't use whitespaces - whitespaces used to break arguments on CLI, avoid, use - or _
-* don't begin with - 
+* don't begin with -
 * commands treat names starting with - as options
 * stay with lettters, numbers , ., - and _
-* if you need to refer to names of files or directoirreis tha thave whitespaces 
+* if you need to refer to names of files or directoirreis tha thave whitespaces
 
 ```bash
 ls -F
@@ -260,7 +261,7 @@ nano draft.txt
   * use `Control+O` to save file shorthand is `^O`)
   * `Control+X` to exit
 
-* I don't like this draft, let's remove it: 
+* I don't like this draft, let's remove it:
 
 ```bash
 ls
@@ -268,8 +269,8 @@ rm draft.txt
 ls
 ```
 
-* where does file go? Can i get it back? 
-* Deleting is forever! 
+* where does file go? Can i get it back?
+* Deleting is forever!
 * recreate file then move up one directory
 
 ```bash
@@ -285,7 +286,7 @@ cd ..
   * `rmdir thesis`
   * could've also used `rm -r thesis`, but that can be dangerous!
 
-* Let's recreate thesis and draft. 
+* Let's recreate thesis and draft.
 
 ```bash
 mkdir thesis
@@ -293,18 +294,18 @@ mkdir thesis
 
 ```bash
 nano thesis/draft.txt
-ls thesis 
+ls thesis
 ```
 
 * but `draft.txt` isn't very informative, let's rename it using the `mv` command
 
 ```bash
-mv thesis/draft.txt thesis/quotes.txt 
+mv thesis/draft.txt thesis/quotes.txt
 ls thesis
 ```
 * first part of mv is what you want to move, second is to where and including the new name
 * **note**: `mv` works on directories as well
-* let's move quotes into the current directory: remember the `.` 
+* let's move quotes into the current directory: remember the `.`
 
 ```bash
 mv thesis/quotes.txt .
@@ -346,7 +347,7 @@ ls quotes.txt thesis/quotations.txt
 
 
 
-####PIPES AND FILTERS
+#### PIPES AND FILTERS
 **Objectives:** redirect command output to file, construct pipelines
 
 * now we can move around and create things, let's see how we can combine existing programs in new ways
@@ -360,14 +361,14 @@ ls molecules
 cd molecules
 ```
 
-* the *.pdb format indicates these are Protein Data Bank files
+* the `*.pdb` format indicates these are Protein Data Bank files
 * let's use the `wc` command -- stands for word count, but also counts lines and characters
 
 ```bash
 wc *.pdb
 ```
 
-* the `*` matches zeror or more characters, so the shell turns *.pdb into a list of all .pdb files
+* the `*` matches zeror or more characters, so the shell turns `*.pdb` into a list of all `.pdb` files
 * word count: lines, words, characters
 * `*` is a wildcard, it matches anything (zero or more characters, there are others)
 
@@ -379,7 +380,7 @@ wc -l *.pdb
 
 * only report number of lines
 
-* what if we do this? 
+* what if we do this?
 
 ```bash
 wc -l *.pdb > lengths.txt
@@ -408,7 +409,7 @@ sort -n lengths.txt
 * sort by first column, using numerical order
 * does not change file, just prints output to screen
 
-* if we want to do that use; 
+* if we want to do that use;
 
 ```bash
 sort -n lengths.txt > sorted-lengths.txt
@@ -457,14 +458,14 @@ programming model: pipes and filters
 * what if you wanted to perform the same commands over and over again on multiple files?
 * supposed we have several hundered genomoe data files named xxx.dat, bbb.dat, etc.
 * go to creatures directory `data-shell/creatures`
-* may try: 
+* may try:
 
 ```bash
 cp *.dat original-*.dat
 ```
 
 * but doesn't work. Why?
-* really you are saying this: 
+* really you are saying this:
 
 ```bash
 cp basilisk.dat unicorn.dat original-*.dat
@@ -476,7 +477,7 @@ cp basilisk.dat unicorn.dat original-*.dat
 
 ```bash
 for filename in basilisk.dat unicorn.dat
-  do 
+  do
     head -3 $filename
   done
 ```
@@ -492,15 +493,15 @@ for filename in basilisk.dat unicorn.dat
 for filename in *.dat
 do
 echo $filename
-head -100 $filename | tail -20 
+head -100 $filename | tail -20
 done
 ```
 
-  * use of wildcard. what does echo do? why is this useful for loops?
+* use of wildcard. what does echo do? why is this useful for loops?
 * write a for loop to resolve the original problem of creating a backup (copy of original data)
-  *strategy: `echo` command before running final, to make sure loop is functioning the way you expect
+* strategy: `echo` command before running final, to make sure loop is functioning the way you expect
 
-* going back to the original file copying problem, we can solve: 
+* going back to the original file copying problem, we can solve:
 
 ```bash
 for filename in *.dat
@@ -523,15 +524,15 @@ cd north-pacific-gyre/2012-07-03
 * `history`: see old commands, find line number (repeat using !number)
 * Socrative questions 7 and 8
 
-####SHELL SCRIPTS
-**Objectives:** write shell script to run command or series of commands for fixed set of files, run shell script from command line, write shell script to operate on set of files defined on command line, create pipelines including user-written shell scripts 
+#### SHELL SCRIPTS
+**Objectives:** write shell script to run command or series of commands for fixed set of files, run shell script from command line, write shell script to operate on set of files defined on command line, create pipelines including user-written shell scripts
 
 * go back to molecules in nelle's directory
 * create file called `middle.sh` and add this command: `head -15 octane.pdb | tail -5`
 * `bash middle.sh`
-  * `.sh` means it's a shell script 
+  * `.sh` means it's a shell script
   * very important to make these in a text editor, rather than in word!
-* edit `middle.sh` and replace file name with `"$1"` 
+* edit `middle.sh` and replace file name with `"$1"`
   * quotations accommodates spaces in filenames
 * `bash middle.sh octane.pdb`, should get same output
   * try another file: `bash middle.sh pentane.pdb`
@@ -548,17 +549,17 @@ cd north-pacific-gyre/2012-07-03
 * `wc -l “$@” | sort -n`
 * `bash sorted.sh *.pdb ../creatures/*.dat`
 * add comment!
-* save last few lines of history to file to remember how to do work again later: 
+* save last few lines of history to file to remember how to do work again later:
   * `history | tail -4 > redo-figure.sh`
   * `history | tail -5 | colrm 1 7` (1-7 characters)
 * nelle problem
   * run goostats on all data files
   * `do-stats.sh`:
- 
+
 ```bash
 #calculate reduced stats for data files at J = 100 C/bp
   for datafile in “$@”
-    do 
+    do
       echo $datafile
       bash goostats -J 100 -r $datafile stats-$datafile
   done
@@ -598,5 +599,5 @@ cd north-pacific-gyre/2012-07-03
 * today we've only talked about text files, what about images, databases, etc? those are binary (machine readable)
 * Socrative question 10
 
-####END CLASS
+#### END CLASS
 * stop shell script output
